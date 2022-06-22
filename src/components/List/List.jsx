@@ -10,10 +10,15 @@ const List = () => {
         if (token === null) {
             history.push("/");
         }
-    }, []);
+    }, [history]);
 
   return (
-    <h1>Soy el componente List</h1>
+    <div className="row">
+      <div className="col-3" style={{border: '1px solid red'}}>Pelicula 1</div>
+      <div className="col-3" style={{border: '1px solid red'}}>Pelicula 2</div>
+      <div className="col-3" style={{border: '1px solid red'}}>Pelicula 3</div>
+      <div className="col-3" style={{border: '1px solid red'}}>Pelicula 4</div>
+    </div>
   )
 }
 
