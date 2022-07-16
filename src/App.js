@@ -1,10 +1,11 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import './css/bootstrap.min.css';
-import Login from "./components/Login/Login";
-import List from './components/List/List';
-import Header from './components/Header/Header';
-import Footer from './components/Footer/Footer';
+import Login from "./components/Login";
+import List from './components/List';
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Detail from './components/Detail';
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Switch>
           <Route exact path='/' component={Login} />
           <Route path='/list' component={List} />
+          <Route path='/detail' component={Detail}/>
         </Switch>
       </div>
       <Footer />

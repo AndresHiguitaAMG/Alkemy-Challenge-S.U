@@ -1,6 +1,8 @@
 import { Link, Redirect  } from 'react-router-dom';
 import { React , useEffect, useState } from 'react';
 import axios from 'axios';
+import swal from '@sweetalert/with-react';
+
 
 const List = () => {
   const [ movieList, setMovieList ] = useState([]);
@@ -12,6 +14,8 @@ const List = () => {
     .then(response => {
       const myData = response.data;
       setMovieList(myData.results);
+    }).catch(error => {
+     swal(<h2>Hubó un error, intenta de nuevo</h2>);
     })
   }, [setMovieList]);
   console.log(movieList);
@@ -31,7 +35,7 @@ const List = () => {
                 <div className="card-body">
                   <h5 className="card-title">{element.title.substring(0,30)}...</h5>
                   <p className="card-text">{element.overview.substring(0, 110)}...</p>
-                  <Link to={"/"} className="btn btn-primary">Go somewhere</Link>
+                  <Link to={`/detail?movieId${element.id}`} className="btn btn-primary">Go somewhere</Link>
                 </div>
               </div>
             </div>
