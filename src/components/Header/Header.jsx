@@ -4,21 +4,21 @@ import { Link } from 'react-router-dom';
 const Header = () => {
   return (
     <header>
-      <nav className="navbar navbar-expand-lg bg-light">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
        <ul>
           <div className="container-fluid">
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div className="navbar-nav">
                 <li>
-                   <Link className="nav-link active" aria-current="page" href="/">Home</Link>
+                   <Link className="nav-link active" aria-current="page" to="/">Home</Link>
                 </li>
                 
                 <li>
-                    <Link className="nav-link" href="/">List</Link>
+                    <Link className="nav-link" to={"/list"}>List</Link>
                 </li>
                 
                 <li>
-                    <Link className="nav-link" href="/">Contacto</Link>
+                    <Link className="nav-link" to={"/"}>Contacto</Link>
                 </li>
               </div>
             </div>

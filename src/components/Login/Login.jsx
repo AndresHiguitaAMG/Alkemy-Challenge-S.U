@@ -1,7 +1,7 @@
 import React from 'react'
 import axios from 'axios';
 import swal from '@sweetalert/with-react';
-import { useHistory } from 'react-router-dom';
+import { Redirect, useHistory } from 'react-router-dom';
 
 const Login = () => {
     const history = useHistory();
@@ -14,15 +14,15 @@ const Login = () => {
         console.log(email, password);
         if (email === "" || password === "") {
             swal(<h2>Los campos no pueden estar vacios</h2>);
-            return
+            return;
         }
         if (email !== "" && !regExEmail.test(email)) {
             swal(<h2>Debes escribir tu correo electronico</h2>);
-            return
+            return;
         }
         if (email !== "challenge@alkemy.org" || password !== "react") {
             swal(<h2>Credenciales invalidas</h2>);
-            return
+            return;
         }
         console.log("Ok estamos listos para enviar la información");
         axios.post("http://challenge-react.alkemy.org", {email, password})
@@ -33,9 +33,15 @@ const Login = () => {
             history.push("/list");
         })
     }
+    
+    let token = localStorage.getItem("token");
+    
 
   return (
     <>
+    {
+        token && <Redirect to={"/list"}/>
+    }
         <h2>Formulario de login</h2>
         <form onSubmit={handleSubmit}>
             <label>

@@ -1,30 +1,45 @@
-import { useHistory, Link  } from 'react-router-dom';
-import { React, useEffect } from 'react';
+import { Link, Redirect  } from 'react-router-dom';
+import { React , useEffect, useState } from 'react';
+import axios from 'axios';
 
 const List = () => {
-    const history = useHistory();
+  const [ movieList, setMovieList ] = useState([]);
+  let token = localStorage.getItem("token");
 
-    useEffect(() => {
-        const token = localStorage.getItem("token");
-        console.log(token)
-        if (token === null) {
-            history.push("/");
-        }
-    }, [history]);
+  useEffect(() => {
+    const myEndpoint = "https://api.themoviedb.org/3/discover/movie?api_key=2dcdffce8dec8289f676122b07053086&language=es-ES&page=1";
+    axios.get(myEndpoint)
+    .then(response => {
+      const myData = response.data;
+      setMovieList(myData.results);
+    })
+  }, [setMovieList]);
+  console.log(movieList);
 
   return (
-    <div className="row">
-      <div className="col-3" style={{border: '1px solid red'}}>
-        <div className="card">
-            <img src="..." className="card-img-top" alt="..."/>
-          <div className="card-body">
-            <h5 className="card-title">Card title</h5>
-            <p className="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-            <Link href="/" className="btn btn-primary">Go somewhere</Link>
-          </div>
-        </div>
+    <>
+    {
+      !token && <Redirect to={"/"} />
+    }
+      <div className="row">
+        {
+          movieList.map((element, index) => {
+            return (
+              <div className="col-3" key={index}>
+                <div className="card my-4">
+                  <img src={`https://image.tmdb.org/t/p/w500/${element.poster_path}`} className="card-img-top" alt="alternative"/>
+                <div className="card-body">
+                  <h5 className="card-title">{element.title.substring(0,30)}...</h5>
+                  <p className="card-text">{element.overview.substring(0, 110)}...</p>
+                  <Link to={"/"} className="btn btn-primary">Go somewhere</Link>
+                </div>
+              </div>
+            </div>
+            )
+          })
+        }
       </div>
-    </div>
+    </>
   )
 }
 
