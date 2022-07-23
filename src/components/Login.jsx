@@ -29,12 +29,12 @@ const Login = () => {
         .then(res => {
             swal(<h2>Has ingresa exitosamente</h2>)
             const tokenRecibido = res.data.token;
-            localStorage.setItem("token", tokenRecibido);
+            sessionStorage.setItem("token", tokenRecibido);
             history.push("/list");
         })
     }
     
-    let token = localStorage.getItem("token");
+    let token = sessionStorage.getItem("token");
     
 
   return (
@@ -42,20 +42,22 @@ const Login = () => {
     {
         token && <Redirect to={"/list"}/>
     }
-        <h2>Formulario de login</h2>
-        <form onSubmit={handleSubmit}>
-            <label>
-                <span>Correo electronico:</span><br />
-                <input type={'email'} name={'email'} />
-            </label>
-            <br />
-            <label>
-                <span>Contraseña:</span><br />
-                <input type={'password'} name={'password'}/>
-            </label>
-            <br />
-            <button type='submit'>Ingresar</button>
-        </form>
+    <div className='row'>
+        <div className='col-6 offset-3'>
+            <h2>Formulario de login</h2>
+            <form onSubmit={handleSubmit}>
+                <label className='form-label d-block mt-2'>
+                    <span>Correo electronico:</span><br />
+                    <input className='form-control' type={'text'} name={'email'}/>
+                </label>
+                <label className='form-label d-block mt-2'>
+                    <span>Contraseña:</span><br />
+                    <input className='form-control' type={'password'} name={'password'}/>
+                </label>
+                <button className='btn btn-success mt2' type='submit'>Ingresar</button>
+            </form>
+        </div>
+    </div>
     </>
   )
 }

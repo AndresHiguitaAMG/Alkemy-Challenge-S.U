@@ -6,6 +6,7 @@ import List from './components/List';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Detail from './components/Detail';
+import Results from './components/Results';
 
 function App() {
   return (
@@ -15,7 +16,8 @@ function App() {
         <Switch>
           <Route exact path='/' component={Login} />
           <Route path='/list' component={List} />
-          <Route path='/detail' component={Detail}/>
+          <Route path='/detail' component={Detail} />
+          <Route path='/results' component={Results} />
         </Switch>
       </div>
       <Footer />

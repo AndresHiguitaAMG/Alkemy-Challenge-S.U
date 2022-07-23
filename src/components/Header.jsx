@@ -1,12 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
+import SearchBar from './SearchBar';
 
 const Header = () => {
   return (
     <header>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-       <ul>
-          <div className="container-fluid">
+        <div className="container-fluid">
+          <ul>
             <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
               <div className="navbar-nav">
                 <li>
@@ -22,8 +23,9 @@ const Header = () => {
                 </li>
               </div>
             </div>
-         </div>
-       </ul>
+          </ul>
+        </div>
+        <SearchBar />
       </nav>
     </header>
   )

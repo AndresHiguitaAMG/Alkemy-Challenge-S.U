@@ -6,7 +6,7 @@ import swal from '@sweetalert/with-react';
 
 const List = () => {
   const [ movieList, setMovieList ] = useState([]);
-  let token = localStorage.getItem("token");
+  let token = sessionStorage.getItem("token");
 
   useEffect(() => {
     const myEndpoint = "https://api.themoviedb.org/3/discover/movie?api_key=2dcdffce8dec8289f676122b07053086&language=es-ES&page=1";
@@ -35,7 +35,7 @@ const List = () => {
                 <div className="card-body">
                   <h5 className="card-title">{element.title.substring(0,30)}...</h5>
                   <p className="card-text">{element.overview.substring(0, 110)}...</p>
-                  <Link to={`/detail?movieId${element.id}`} className="btn btn-primary">Go somewhere</Link>
+                  <Link to={`/detail?movieId=${element.id}`} className="btn btn-primary">Go somewhere</Link>
                 </div>
               </div>
             </div>
