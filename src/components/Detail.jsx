@@ -14,6 +14,8 @@ const Detail = () => {
     axios.get(endPoint).then(response => {
       const movieData = response.data;
       setidMovie(movieData);
+    }).catch(error => {
+      console.log(error);
     })
   }, [movieId]);
 
