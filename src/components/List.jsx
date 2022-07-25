@@ -4,7 +4,8 @@ import axios from 'axios';
 import swal from '@sweetalert/with-react';
 
 
-const List = () => {
+const List = (props) => {
+  console.log(props)
   const [ movieList, setMovieList ] = useState([]);
   let token = sessionStorage.getItem("token");
 
@@ -18,7 +19,6 @@ const List = () => {
      swal(<h2>Hubó un error, intenta de nuevo</h2>);
     })
   }, [setMovieList]);
-  console.log(movieList);
 
   return (
     <>
@@ -32,6 +32,7 @@ const List = () => {
               <div className="col-3" key={index}>
                 <div className="card my-4">
                   <img src={`https://image.tmdb.org/t/p/w500/${element.poster_path}`} className="card-img-top" alt="alternative"/>
+                  <button className='favourite-btn' onClick={props.addOrRemoveFromFavs}>🖤</button>
                 <div className="card-body">
                   <h5 className="card-title">{element.title.substring(0,30)}...</h5>
                   <p className="card-text">{element.overview.substring(0, 110)}...</p>
