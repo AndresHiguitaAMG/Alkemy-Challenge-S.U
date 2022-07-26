@@ -32,7 +32,12 @@ const List = (props) => {
               <div className="col-3" key={index}>
                 <div className="card my-4">
                   <img src={`https://image.tmdb.org/t/p/w500/${element.poster_path}`} className="card-img-top" alt="alternative"/>
-                  <button className='favourite-btn' onClick={props.addOrRemoveFromFavs}>🖤</button>
+                  <button 
+                  className='favourite-btn' 
+                  onClick={props.addOrRemoveFromFavs}
+                  data-movie-id={element.id}
+                  >
+                  🖤</button>
                 <div className="card-body">
                   <h5 className="card-title">{element.title.substring(0,30)}...</h5>
                   <p className="card-text">{element.overview.substring(0, 110)}...</p>

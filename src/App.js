@@ -10,11 +10,29 @@ import Detail from './components/Detail';
 import Results from './components/Results';
 
 function App() {
+  const favsMovies = localStorage.getItem("favs");
+  console.log(favsMovies);
+  let tempMovieInFavs;
+
+  if (favsMovies === null) {
+    tempMovieInFavs = [];
+  } else {
+  }
+  console.log(tempMovieInFavs);
+
   const addOrRemoveFromFavs = e => {
     const btn = e.target;
     const parent = btn.parentElement;
     const imgURL = parent.querySelector("img").getAttribute("src");
-    console.log(imgURL)
+    const elementTitle = parent.querySelector("h5").innerText;
+    const elementOverView = parent.querySelector("p").innerText
+    const movieData = {
+      imgURL,
+      elementTitle,
+      elementOverView,
+      id: btn.dataset.movieId
+    }
+    console.log(movieData);
   } 
   return (
     <>
